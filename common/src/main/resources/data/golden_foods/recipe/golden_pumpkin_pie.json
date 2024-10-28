@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cake"
+      "item": "minecraft:pumpkin_pie"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cake"
+    "id": "golden_foods:golden_pumpkin_pie"
   },
   "show_notification": true
 }

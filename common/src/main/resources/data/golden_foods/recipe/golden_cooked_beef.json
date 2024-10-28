@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:milk_bucket"
+      "item": "minecraft:cooked_beef"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_milk_bucket"
+    "id": "golden_foods:golden_cooked_beef"
   },
   "show_notification": true
 }

@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cooked_porkchop"
+      "item": "minecraft:chorus_fruit"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cooked_porkchop"
+    "id": "golden_foods:golden_chorus_fruit"
   },
   "show_notification": true
 }

@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cooked_mutton"
+      "item": "minecraft:sweet_berries"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cooked_mutton"
+    "id": "golden_foods:golden_sweet_berries"
   },
   "show_notification": true
 }

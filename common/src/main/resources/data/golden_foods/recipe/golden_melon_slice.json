@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:honey_bottle"
+      "item": "minecraft:melon_slice"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_honey_bottle"
+    "id": "golden_foods:golden_melon_slice"
   },
   "show_notification": true
 }

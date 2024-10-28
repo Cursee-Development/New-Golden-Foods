@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:baked_potato"
+      "item": "minecraft:cooked_salmon"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_baked_potato"
+    "id": "golden_foods:golden_cooked_salmon"
   },
   "show_notification": true
 }

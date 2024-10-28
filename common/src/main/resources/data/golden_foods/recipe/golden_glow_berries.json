@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cooked_beef"
+      "item": "minecraft:glow_berries"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cooked_beef"
+    "id": "golden_foods:golden_glow_berries"
   },
   "show_notification": true
 }

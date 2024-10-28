@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cooked_rabbit"
+      "item": "minecraft:cooked_porkchop"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cooked_rabbit"
+    "id": "golden_foods:golden_cooked_porkchop"
   },
   "show_notification": true
 }

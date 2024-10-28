@@ -6,7 +6,7 @@
       "item": "minecraft:gold_ingot"
     },
     "X": {
-      "item": "minecraft:cooked_chicken"
+      "item": "minecraft:dried_kelp"
     }
   },
   "pattern": [
@@ -15,7 +15,7 @@
     "###"
   ],
   "result": {
-    "item": "golden_foods:golden_cooked_chicken"
+    "id": "golden_foods:golden_dried_kelp"
   },
   "show_notification": true
 }
