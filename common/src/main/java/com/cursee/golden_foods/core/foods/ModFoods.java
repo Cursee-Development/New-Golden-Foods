@@ -14,17 +14,17 @@ import net.minecraft.world.food.FoodProperties;
 public class ModFoods {
 
     private static FoodProperties.Builder goldenFoodProperties(int nutrition, float saturationModifier) {
-        return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturationModifier)
+        return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationModifier)
                 .effect(new MobEffectInstance(MobEffects.REGENERATION, 100, 1), 1.0F)
-                .effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEat();
+                .effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 0), 1.0F).alwaysEdible();
     }
 
     private static FoodProperties.Builder enchantedGoldenFoodProperties(int nutrition, float saturationModifier) {
-        return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturationModifier)
+        return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturationModifier)
                 .effect(new MobEffectInstance(MobEffects.REGENERATION, 400, 1), 1.0F)
                 .effect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 0), 1.0F)
                 .effect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000, 0), 1.0F)
-                .effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEat();
+                .effect(new MobEffectInstance(MobEffects.ABSORPTION, 2400, 3), 1.0F).alwaysEdible();
     }
 
     public static final FoodProperties ENCHANTED_GOLDEN_CARROT = enchantedGoldenFoodProperties(3, 2.4f).build();
