@@ -1,14 +1,31 @@
 package com.cursee.golden_foods.core.registry;
 
 import com.cursee.golden_foods.Constants;
+import com.cursee.golden_foods.GoldenFoods;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Predicate;
 
 public class ModTabsForge {
 
     public static void register() {}
+
+    private static void generateGoldenFoodsEnchantmentBook(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantmentHolderLookup, CreativeModeTab.TabVisibility tabVisibility) {
+
+        if (enchantmentHolderLookup.listElementIds().anyMatch(Predicate.isEqual(GoldenFoods.GOLDEN_FOODS))) {}
+
+        enchantmentHolderLookup.listElements().map(($$0x) -> {
+            return EnchantedBookItem.createForEnchantment(new EnchantmentInstance($$0x, 1));
+        }).forEach((itemStack) -> {
+            output.accept(itemStack, tabVisibility);
+        });
+    }
 
     public static final RegistryObject<CreativeModeTab> GOLDEN_FOODS_TAB = RegistryForge.registerTab(Constants.MOD_ID, () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
@@ -16,7 +33,9 @@ public class ModTabsForge {
             .title(Component.translatable("itemGroup.goldenFoods"))
             .displayItems((itemDisplayParameters, output) -> {
 
-                output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(ModEnchantmentsForge.GOLDEN_FOODS.get(), 1)));
+                itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent((enchantmentRegistryLookup) -> {
+                    generateGoldenFoodsEnchantmentBook(output, enchantmentRegistryLookup, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                });
 
                 output.accept(Items.GOLDEN_APPLE);
                 output.accept(Items.ENCHANTED_GOLDEN_APPLE);

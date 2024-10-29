@@ -3,6 +3,7 @@ package com.cursee.golden_foods.core.foods;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Items;
 
 /**
  * Holds the values for all new golden food items. Nutrition is the same value as the vanilla food, but the saturation
@@ -63,12 +64,12 @@ public class ModFoods {
     public static final FoodProperties GOLDEN_HONEY_BOTTLE = goldenFoodProperties(6, 0.4f).build();
     public static final FoodProperties ENCHANTED_GOLDEN_HONEY_BOTTLE = enchantedGoldenFoodProperties(6, 0.4f).build();
 
-    public static final FoodProperties GOLDEN_MUSHROOM_STEW = goldenFoodProperties(6, 2.4f).build();
-    public static final FoodProperties ENCHANTED_GOLDEN_MUSHROOM_STEW = enchantedGoldenFoodProperties(6, 2.4f).build();
-    public static final FoodProperties GOLDEN_BEETROOT_SOUP = goldenFoodProperties(6, 2.4f).build();
-    public static final FoodProperties ENCHANTED_GOLDEN_BEETROOT_SOUP = enchantedGoldenFoodProperties(6, 2.4f).build();
-    public static final FoodProperties GOLDEN_RABBIT_STEW = goldenFoodProperties(10, 2.4f).build();
-    public static final FoodProperties ENCHANTED_GOLDEN_RABBIT_STEW = enchantedGoldenFoodProperties(10, 2.4f).build();
+    public static final FoodProperties GOLDEN_MUSHROOM_STEW = goldenFoodProperties(6, 2.4f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties ENCHANTED_GOLDEN_MUSHROOM_STEW = enchantedGoldenFoodProperties(6, 2.4f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties GOLDEN_BEETROOT_SOUP = goldenFoodProperties(6, 2.4f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties ENCHANTED_GOLDEN_BEETROOT_SOUP = enchantedGoldenFoodProperties(6, 2.4f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties GOLDEN_RABBIT_STEW = goldenFoodProperties(10, 2.4f).usingConvertsTo(Items.BOWL).build();
+    public static final FoodProperties ENCHANTED_GOLDEN_RABBIT_STEW = enchantedGoldenFoodProperties(10, 2.4f).usingConvertsTo(Items.BOWL).build();
 
     public static final FoodProperties GOLDEN_COOKED_BEEF = goldenFoodProperties(8, 3.2f).build();
     public static final FoodProperties ENCHANTED_GOLDEN_COOKED_BEEF = enchantedGoldenFoodProperties(8, 3.2f).build();

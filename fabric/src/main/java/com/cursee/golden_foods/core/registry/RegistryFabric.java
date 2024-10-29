@@ -17,15 +17,14 @@ public class RegistryFabric {
         ModBlocksFabric.register();
         ModItemsFabric.register();
         ModTabsFabric.register();
-        ModEnchantmentsFabric.register();
     }
 
     public static <T extends Block> Block registerBlock(String blockID, Supplier<T> blockSupplier) {
-        return Registry.register(BuiltInRegistries.BLOCK, new GoldenFoods.Identifier(blockID), blockSupplier.get());
+        return Registry.register(BuiltInRegistries.BLOCK, GoldenFoods.Identifier.of(blockID), blockSupplier.get());
     }
 
     public static <T extends Item> Item registerItem(String itemID, Supplier<T> itemSupplier) {
-        return Registry.register(BuiltInRegistries.ITEM, new GoldenFoods.Identifier(itemID), itemSupplier.get());
+        return Registry.register(BuiltInRegistries.ITEM, GoldenFoods.Identifier.of(itemID), itemSupplier.get());
     }
 
     public static <T extends Block> Block registerBlockWithItem(String blockID, Supplier<T> blockSupplier) {
@@ -35,10 +34,6 @@ public class RegistryFabric {
     }
 
     public static <T extends CreativeModeTab> CreativeModeTab registerTab(String tabID, Supplier<T> tabSupplier) {
-        return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new GoldenFoods.Identifier(tabID), tabSupplier.get());
-    }
-
-    public static <T extends Enchantment> Enchantment registerEnchantment(String enchantmentID, Supplier<T> enchantmentSupplier) {
-        return Registry.register(BuiltInRegistries.ENCHANTMENT, new GoldenFoods.Identifier(enchantmentID), enchantmentSupplier.get());
+        return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, GoldenFoods.Identifier.of(tabID), tabSupplier.get());
     }
 }

@@ -1,6 +1,5 @@
 package com.cursee.golden_foods;
 
-import com.cursee.golden_foods.core.registry.ModEnchantmentsForge;
 import com.cursee.golden_foods.core.registry.RegistryForge;
 import com.cursee.monolib.core.sailing.Sailing;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,18 +21,18 @@ public class GoldenFoodsForge {
         RegistryForge.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
-    public static class CreativeModeTabsEvents {
-
-        @SubscribeEvent
-        public void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
-
-            if (event.getTabKey() != CreativeModeTabs.TOOLS_AND_UTILITIES) return;
-
-            final ItemStack[] lastEnchantedBookItemStack = new ItemStack[]{ItemStack.EMPTY};
-            event.getEntries().forEach(itemStackTabVisibilityEntry -> lastEnchantedBookItemStack[0] = itemStackTabVisibilityEntry.getKey());
-
-            event.getEntries().putAfter(lastEnchantedBookItemStack[0], EnchantedBookItem.createForEnchantment(new EnchantmentInstance(ModEnchantmentsForge.GOLDEN_FOODS.get(), 1)), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-        }
-    }
+//    @Mod.EventBusSubscriber(modid = Constants.MOD_ID)
+//    public static class CreativeModeTabsEvents {
+//
+//        @SubscribeEvent
+//        public void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
+//
+//            if (event.getTabKey() != CreativeModeTabs.TOOLS_AND_UTILITIES) return;
+//
+//            final ItemStack[] lastEnchantedBookItemStack = new ItemStack[]{ItemStack.EMPTY};
+//            event.getEntries().forEach(itemStackTabVisibilityEntry -> lastEnchantedBookItemStack[0] = itemStackTabVisibilityEntry.getKey());
+//
+//            event.getEntries().putAfter(lastEnchantedBookItemStack[0], EnchantedBookItem.createForEnchantment(new EnchantmentInstance(ModEnchantmentsForge.GOLDEN_FOODS.get(), 1)), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+//        }
+//    }
 }

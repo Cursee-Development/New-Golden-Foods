@@ -1,7 +1,7 @@
 package com.cursee.golden_foods.core;
 
+import com.cursee.golden_foods.GoldenFoods;
 import com.cursee.golden_foods.core.registry.ModBlocksFabric;
-import com.cursee.golden_foods.core.registry.ModEnchantmentsFabric;
 import com.cursee.golden_foods.core.registry.ModItemsFabric;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
@@ -10,11 +10,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import oshi.util.tuples.Triplet;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class EnchantedGoldenFoodCreationMethodFabric {
 
     public static Triplet<Integer, Integer, ItemStack> createGoldenFoods(AnvilMenu instance, ItemStack slotLeft, ItemStack slotRight, ItemStack slotOutput, String leftSlotName, int baseCost, Player player) {
 
-        if (!EnchantmentHelper.getEnchantments(slotRight).containsKey(ModEnchantmentsFabric.GOLDEN_FOODS)) return null;
+        final AtomicBoolean foundEnchantment = new AtomicBoolean(false);
+        EnchantmentHelper.getEnchantmentsForCrafting(slotRight).keySet().forEach(enchantmentHolder -> {
+            if (enchantmentHolder.is(GoldenFoods.GOLDEN_FOODS)) foundEnchantment.set(true);
+        });
+        if (!foundEnchantment.get()) return null;
 
         final Integer experienceCost = Math.min(slotLeft.getCount(), 40);
 

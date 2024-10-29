@@ -2,7 +2,7 @@ package com.cursee.golden_foods.mixin;
 
 // import com.cursee.golden_foods.core.registry.ModEnchantmentsFabric;
 import com.cursee.golden_foods.GoldenFoods;
-import com.cursee.golden_foods.core.registry.ModItemsFabric;
+import com.cursee.golden_foods.core.registry.ModItemsForge;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 // import javax.annotation.Nullable;
 
 @Mixin(FishingHook.class)
-public abstract class FabricFishingHookMixin {
+public abstract class ForgeFishingHookMixin {
 
     @Shadow @Nullable
     public abstract Player getPlayerOwner();
@@ -46,10 +46,10 @@ public abstract class FabricFishingHookMixin {
         if (!foundEnchantmentRightHand.get() || !foundEnchantmentLeftHand.get()) return instance.addFreshEntity(entity);
 
         if (itemEntity.getItem().is(Items.COD)) {
-            return instance.addFreshEntity(new ItemEntity(instance, player.getX(), player.getY(), player.getZ(), new ItemStack(ModItemsFabric.ENCHANTED_GOLDEN_COOKED_COD)));
+            return instance.addFreshEntity(new ItemEntity(instance, player.getX(), player.getY(), player.getZ(), new ItemStack(ModItemsForge.ENCHANTED_GOLDEN_COOKED_COD.get())));
         }
         else if (itemEntity.getItem().is(Items.SALMON)) {
-            return instance.addFreshEntity(new ItemEntity(instance, player.getX(), player.getY(), player.getZ(), new ItemStack(ModItemsFabric.ENCHANTED_GOLDEN_COOKED_SALMON)));
+            return instance.addFreshEntity(new ItemEntity(instance, player.getX(), player.getY(), player.getZ(), new ItemStack(ModItemsForge.ENCHANTED_GOLDEN_COOKED_SALMON.get())));
         }
 
         return instance.addFreshEntity(entity);

@@ -1,24 +1,43 @@
 package com.cursee.golden_foods.core.registry;
 
 import com.cursee.golden_foods.Constants;
+import com.cursee.golden_foods.GoldenFoods;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
+
+import java.util.function.Predicate;
 
 public class ModTabsFabric {
 
     public static void register() {}
+
+    private static void generateGoldenFoodsEnchantmentBook(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantmentHolderLookup, CreativeModeTab.TabVisibility tabVisibility) {
+
+        if (enchantmentHolderLookup.listElementIds().anyMatch(Predicate.isEqual(GoldenFoods.GOLDEN_FOODS))) {}
+
+        enchantmentHolderLookup.listElements().map(($$0x) -> {
+            return EnchantedBookItem.createForEnchantment(new EnchantmentInstance($$0x, 1));
+        }).forEach((itemStack) -> {
+            output.accept(itemStack, tabVisibility);
+        });
+    }
 
     public static final CreativeModeTab GOLDEN_FOODS_TAB = RegistryFabric.registerTab(Constants.MOD_ID, () -> FabricItemGroup.builder()
             .icon(() -> new ItemStack(ModItemsFabric.ENCHANTED_GOLDEN_CARROT))
             .title(Component.translatable("itemGroup.goldenFoods"))
             .displayItems((itemDisplayParameters, output) -> {
 
-                output.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(ModEnchantmentsFabric.GOLDEN_FOODS, 1)));
+                itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent((enchantmentRegistryLookup) -> {
+                    generateGoldenFoodsEnchantmentBook(output, enchantmentRegistryLookup, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                });
 
                 output.accept(Items.GOLDEN_APPLE);
                 output.accept(Items.ENCHANTED_GOLDEN_APPLE);

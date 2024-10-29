@@ -7,6 +7,7 @@ import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -23,46 +24,39 @@ import org.jetbrains.annotations.NotNull;
 public class EnchantedGoldenCakeBlock extends CakeBlock {
 
     public EnchantedGoldenCakeBlock() {
-        super(Properties.copy(Blocks.CAKE));
+        super(Properties.ofFullCopy(Blocks.CAKE));
     }
 
-    @Override
-    public @NotNull InteractionResult use(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull Player player, @NotNull InteractionHand interactionhand, @NotNull BlockHitResult blockHitResult) {
-
-        ItemStack itemStack = player.getItemInHand(interactionhand);
-        Item item = itemStack.getItem();
-
-        if (itemStack.is(ItemTags.CANDLES) && blockState.getValue(BITES) == 0) {
-
-            Block block = Block.byItem(item);
-
-            if (block instanceof CandleBlock) {
-
-                if (!player.isCreative()) {
-                    itemStack.shrink(1);
-                }
-
-                level.playSound((Player)null, blockPos, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                level.setBlockAndUpdate(blockPos, CandleCakeBlock.byCandle(block));
-                level.gameEvent(player, GameEvent.BLOCK_CHANGE, blockPos);
-                player.awardStat(Stats.ITEM_USED.get(item));
-
-                return InteractionResult.SUCCESS;
+    protected ItemInteractionResult useItemOn(ItemStack $$0, BlockState $$1, Level $$2, BlockPos $$3, Player $$4, InteractionHand $$5, BlockHitResult $$6) {
+        Item $$7 = $$0.getItem();
+        if ($$0.is(ItemTags.CANDLES) && (Integer)$$1.getValue(BITES) == 0) {
+            Block var10 = Block.byItem($$7);
+            if (var10 instanceof CandleBlock) {
+                CandleBlock $$9 = (CandleBlock)var10;
+                $$0.consume(1, $$4);
+                $$2.playSound((Player)null, $$3, SoundEvents.CAKE_ADD_CANDLE, SoundSource.BLOCKS, 1.0F, 1.0F);
+                $$2.setBlockAndUpdate($$3, CandleCakeBlock.byCandle($$9));
+                $$2.gameEvent($$4, GameEvent.BLOCK_CHANGE, $$3);
+                $$4.awardStat(Stats.ITEM_USED.get($$7));
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
-        if (level.isClientSide) {
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
 
-            if (eat(level, blockPos, blockState, player).consumesAction()) {
+    protected InteractionResult useWithoutItem(BlockState $$0, Level $$1, BlockPos $$2, Player $$3, BlockHitResult $$4) {
+        if ($$1.isClientSide) {
+            if (eat($$1, $$2, $$0, $$3).consumesAction()) {
                 return InteractionResult.SUCCESS;
             }
 
-            if (itemStack.isEmpty()) {
+            if ($$3.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                 return InteractionResult.CONSUME;
             }
         }
 
-        return eat(level, blockPos, blockState, player);
+        return eat($$1, $$2, $$0, $$3);
     }
 
     protected static @NotNull InteractionResult eat(LevelAccessor levelAccessor, @NotNull BlockPos blockPos, BlockState blockState, Player player) {

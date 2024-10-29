@@ -21,19 +21,16 @@ public class RegistryForge {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Constants.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Constants.MOD_ID);
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(BuiltInRegistries.CREATIVE_MODE_TAB.key(), Constants.MOD_ID);
-    public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Constants.MOD_ID);
 
     public static void register(IEventBus modEventBus) {
 
         ModBlocksForge.register();
         ModItemsForge.register();
         ModTabsForge.register();
-        ModEnchantmentsForge.register();
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         TABS.register(modEventBus);
-        ENCHANTMENTS.register(modEventBus);
     }
 
     public static <T extends Block> RegistryObject<T> registerBlock(String blockID, Supplier<T> blockSupplier) {
@@ -52,9 +49,5 @@ public class RegistryForge {
 
     public static <T extends CreativeModeTab> RegistryObject<T> registerTab(String tabID, Supplier<T> tabSupplier) {
         return TABS.register(tabID, tabSupplier);
-    }
-
-    public static <T extends Enchantment> RegistryObject<T> registerEnchantment(String enchantmentID, Supplier<T> enchantmentSupplier) {
-        return ENCHANTMENTS.register(enchantmentID, enchantmentSupplier);
     }
 }
