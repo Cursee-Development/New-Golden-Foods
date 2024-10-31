@@ -16,15 +16,12 @@ public class ModTabsForge {
 
     public static void register() {}
 
-    private static void generateGoldenFoodsEnchantmentBook(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantmentHolderLookup, CreativeModeTab.TabVisibility tabVisibility) {
-
-        if (enchantmentHolderLookup.listElementIds().anyMatch(Predicate.isEqual(GoldenFoods.GOLDEN_FOODS))) {}
-
-        enchantmentHolderLookup.listElements().map(($$0x) -> {
-            return EnchantedBookItem.createForEnchantment(new EnchantmentInstance($$0x, 1));
-        }).forEach((itemStack) -> {
-            output.accept(itemStack, tabVisibility);
-        });
+    private static void addGoldenFoodsBook(CreativeModeTab.Output output, HolderLookup<Enchantment> enchantmentHolderLookup, CreativeModeTab.TabVisibility tabVisibility) {
+        enchantmentHolderLookup
+                .listElements()
+                .filter(enchantmentReference -> enchantmentReference.is(GoldenFoods.GOLDEN_FOODS))
+                .map(enchantmentReference -> EnchantedBookItem.createForEnchantment(new EnchantmentInstance(enchantmentReference, 1)))
+                .forEach(itemStack -> output.accept(itemStack, tabVisibility));
     }
 
     public static final RegistryObject<CreativeModeTab> GOLDEN_FOODS_TAB = RegistryForge.registerTab(Constants.MOD_ID, () -> CreativeModeTab.builder()
@@ -34,7 +31,7 @@ public class ModTabsForge {
             .displayItems((itemDisplayParameters, output) -> {
 
                 itemDisplayParameters.holders().lookup(Registries.ENCHANTMENT).ifPresent((enchantmentRegistryLookup) -> {
-                    generateGoldenFoodsEnchantmentBook(output, enchantmentRegistryLookup, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+                    addGoldenFoodsBook(output, enchantmentRegistryLookup, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 });
 
                 output.accept(Items.GOLDEN_APPLE);
